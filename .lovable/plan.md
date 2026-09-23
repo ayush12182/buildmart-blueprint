@@ -1,18 +1,18 @@
 # BuildMart Premium B2B Website
 
 ## Goal
-Build a polished, responsive one-page website positioning BuildMart as the premium next-generation wholesale brand of Kwality Hardware in Gwalior.
+Build a polished, responsive one-page website positioning BuildMart as a premium next-generation wholesale hardware brand in Gwalior.
 
 ## What I’ll build
 - A sticky black navigation bar with responsive mobile menu and quote CTA.
-- A cinematic first screen using custom fastener photography, strong BuildMart branding, Kwality Hardware attribution, and quote/product actions.
+- A cinematic first screen using custom fastener photography, strong BuildMart branding, and quote/product actions.
 - A slim trust strip followed by the brand story, emphasizing established experience, local expertise, and next-generation supply.
 - Premium product category presentations for screws, nuts, bolts, washers, and industrial fasteners with restrained image interactions.
 - A panoramic product showcase and industry grid for construction, manufacturing, fabrication, engineering, automotive, and infrastructure.
 - A four-part “Why BuildMart” section focused on quality, reliability, range, and value.
 - A dramatic wholesale enquiry callout and a future-growth brand message using “Bigger Supply. Stronger Solutions.”
 - A professional enquiry form with all requested fields, clear placeholder contact details, and an honest success state.
-- A branded footer identifying BuildMart as a brand by Kwality Hardware in Lohiya Bazar, Gwalior.
+- A branded footer identifying BuildMart as a hardware wholesaler in Lohiya Bazar, Gwalior.
 
 ## Visual direction
 - Deep matte black and graphite surfaces with metallic silver typography.

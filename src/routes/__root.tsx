@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "BuildMart" },
-      { name: "description", content: "BuildMart by Kwality Hardware." },
+      { name: "description", content: "BuildMart hardware wholesale in Gwalior." },
       { name: "author", content: "BuildMart" },
       { property: "og:title", content: "BuildMart" },
       { property: "og:description", content: "Hardware wholesale in Gwalior." },

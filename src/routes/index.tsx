@@ -21,7 +21,6 @@ import {
 
 import heroImage from "@/assets/buildmart-hero.jpg";
 import aboutImage from "@/assets/buildmart-about.jpg";
-import productsImage from "@/assets/buildmart-products.jpg";
 import doorHardwareImage from "@/assets/catalogue-door-hardware.jpg";
 import smartSecurityImage from "@/assets/catalogue-smart-security.jpg";
 import furnitureHardwareImage from "@/assets/catalogue-furniture-hardware.jpg";
@@ -130,6 +129,20 @@ const categoryImages = [
 
 const featuredBrands = ["Creatick", "Dorset", "Yale", "Jainson", "CENT"] as const;
 
+const commitments = [
+  { icon: ShieldCheck, label: "Quality assured" },
+  { icon: Truck, label: "Consistent supply" },
+  { icon: PackageCheck, label: "Competitive value" },
+  { icon: Building2, label: "B2B focused" },
+] as const;
+
+const values = [
+  { icon: ShieldCheck, title: "Quality", copy: "Reliable hardware for demanding applications." },
+  { icon: Truck, title: "Reliability", copy: "Built around dependable wholesale supply." },
+  { icon: Layers3, title: "Range", copy: "Essential fastening products under one roof." },
+  { icon: Sparkles, title: "Value", copy: "Competitive wholesale solutions for businesses." },
+] as const;
+
 function BrandName({ compact = false }: { compact?: boolean }) {
   return (
     <span className="brand-name" aria-label="BuildMart">
@@ -225,10 +238,8 @@ function BuildMartHome() {
 
       <section className="trust-strip" aria-label="BuildMart commitments">
         <div className="section-shell grid grid-cols-2 lg:grid-cols-4">
-          {[
-            [ShieldCheck, "Quality assured"], [Truck, "Consistent supply"], [PackageCheck, "Competitive value"], [Building2, "B2B focused"],
-          ].map(([Icon, text]) => (
-            <div key={text as string} className="trust-item"><Icon /><span>{text as string}</span></div>
+          {commitments.map(({ icon: Icon, label }) => (
+            <div key={label} className="trust-item"><Icon /><span>{label}</span></div>
           ))}
         </div>
       </section>
@@ -290,16 +301,16 @@ function BuildMartHome() {
             ))}
           </div>
           <div className="catalogue-grid mt-16" aria-label="Full BuildMart catalogue">
-            {catalogueDetails.map(({ title, items, brands, note }, index) => (
-              <article key={title} className="catalogue-card">
+            {catalogueDetails.map((detail, index) => (
+              <article key={detail.title} className="catalogue-card">
                 <div className="flex items-start justify-between gap-4">
                   <span className="catalogue-index">{String(index + 1).padStart(2, "0")}</span>
                   <ArrowDownRight className="text-primary" aria-hidden="true" />
                 </div>
-                <h3>{title}</h3>
-                <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-                {brands && <p className="catalogue-note"><strong>Brands & ranges</strong>{brands}</p>}
-                {note && <p className="catalogue-note"><strong>Range note</strong>{note}</p>}
+                <h3>{detail.title}</h3>
+                <ul>{detail.items.map((item) => <li key={item}>{item}</li>)}</ul>
+                {"brands" in detail && <p className="catalogue-note"><strong>Brands & ranges</strong>{detail.brands}</p>}
+                {"note" in detail && <p className="catalogue-note"><strong>Range note</strong>{detail.note}</p>}
               </article>
             ))}
           </div>
@@ -307,7 +318,7 @@ function BuildMartHome() {
       </section>
 
       <section className="showcase-section">
-        <img src={productsImage} alt="Hex bolts, nuts, washers, screws and threaded fasteners in studio lighting" loading="lazy" width={1920} height={912} />
+        <img src={doorHardwareImage} alt="Door handles, hinges and mortise hardware in studio lighting" loading="lazy" width={1600} height={900} />
         <div className="showcase-shade" />
         <div className="section-shell relative z-10 py-24 sm:py-32">
           <p className="eyebrow"><span /> Engineered essentials</p>
@@ -339,13 +350,8 @@ function BuildMartHome() {
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
             <div><p className="eyebrow"><span /> Why BuildMart?</p><h2 className="section-title mt-6">More than hardware.<br /><span>A stronger supply chain.</span></h2></div>
             <div className="grid gap-px bg-border sm:grid-cols-2">
-              {[
-                [ShieldCheck,"Quality","Reliable hardware for demanding applications."],
-                [Truck,"Reliability","Built around dependable wholesale supply."],
-                [Layers3,"Range","Essential fastening products under one roof."],
-                [Sparkles,"Value","Competitive wholesale solutions for businesses."],
-              ].map(([Icon,title,copy]) => (
-                <article key={title as string} className="value-cell"><Icon /><h3>{title as string}</h3><p>{copy as string}</p></article>
+              {values.map(({ icon: Icon, title, copy }) => (
+                <article key={title} className="value-cell"><Icon /><h3>{title}</h3><p>{copy}</p></article>
               ))}
             </div>
           </div>

@@ -70,9 +70,9 @@ button, a, input, textarea { letter-spacing: 0; }
 .section-space { padding-block: clamp(6rem, 10vw, 10rem); }
 .site-header { position: fixed; inset: 0 0 auto; z-index: 50; border-bottom: 1px solid transparent; background: color-mix(in oklab, var(--background) 25%, transparent); backdrop-filter: blur(10px); transition: background .3s ease, border-color .3s ease; }
 .site-header-solid { border-color: var(--border); background: color-mix(in oklab, var(--background) 92%, transparent); }
-.brand-name { display: inline-flex; align-items: center; }
-.brand-mark { display: block; height: auto; width: 14rem; object-fit: contain; }
-.brand-mark-compact { width: 9.5rem; }
+.brand-name { display: inline-flex; max-width: 100%; align-items: center; overflow: hidden; }
+.brand-mark { display: block; height: auto; width: 14rem; max-width: 100%; object-fit: contain; }
+.brand-mark-compact { width: auto; max-width: 8.5rem; max-height: 4rem; }
 .nav-link { color: var(--muted-foreground); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; transition: color .2s; }
 .nav-link:hover { color: var(--foreground); }
 .mobile-menu { border-top: 1px solid var(--border); background: var(--background); padding: 1rem; }
@@ -96,6 +96,11 @@ button, a, input, textarea { letter-spacing: 0; }
 .trust-strip { border-block: 1px solid var(--border); background: var(--surface); }
 .trust-item { display: flex; min-height: 7rem; align-items: center; gap: .9rem; border-right: 1px solid var(--border); padding: 1.5rem; color: var(--steel); font-size: .67rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .trust-item:last-child { border-right: 0; }.trust-item svg { width: 1.15rem; color: var(--primary); }
+.brand-marquee { overflow: hidden; border-bottom: 1px solid var(--border); background: var(--background); padding-block: 1.15rem; }
+.brand-marquee-track { display: flex; width: max-content; align-items: center; animation: brand-scroll 22s linear infinite; will-change: transform; }
+.brand-marquee-track span { display: flex; min-width: 15rem; align-items: center; justify-content: center; gap: 1rem; color: var(--steel); font-family: var(--font-display); font-size: .82rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+.brand-marquee-track i { height: .3rem; width: .3rem; flex: none; rotate: 45deg; background: var(--accent); }
+@keyframes brand-scroll { to { transform: translateX(-50%); } }
 .image-frame { position: relative; aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--border); }
 .image-frame::before { content: ""; position: absolute; inset: 0; z-index: 1; box-shadow: inset 0 0 70px color-mix(in oklab, var(--background) 70%, transparent); pointer-events: none; }
 .image-tag { position: absolute; right: 0; bottom: 0; z-index: 2; border-top: 1px solid var(--border); border-left: 1px solid var(--border); background: color-mix(in oklab, var(--background) 89%, transparent); padding: 1.15rem 1.4rem; backdrop-filter: blur(12px); }
@@ -108,7 +113,7 @@ button, a, input, textarea { letter-spacing: 0; }
 .product-row { position: relative; display: grid; grid-template-columns: 4rem 1fr 1.2fr 2fr 2rem; align-items: center; gap: 2rem; min-height: 9.5rem; border-bottom: 1px solid var(--border); overflow: hidden; }
 .product-row::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }.product-row:hover::after { transform: scaleX(1); }
 .product-number { color: var(--primary); font-size: .65rem; font-weight: 700; }.product-row h3 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.7rem); font-weight: 600; text-transform: uppercase; transition: transform .35s; }.product-row:hover h3 { transform: translateX(.4rem); }.product-row p { color: var(--muted-foreground); font-size: .9rem; line-height: 1.6; }.product-row > svg { color: var(--steel); }
-.product-crop { height: 6rem; overflow: hidden; }.product-crop img { height: 100%; width: 100%; object-fit: cover; filter: saturate(.6); transition: transform .6s, filter .6s; }.product-row:hover img { transform: scale(1.08); filter: saturate(1); }
+.product-crop { height: 6rem; overflow: hidden; background: var(--muted); }.product-crop img { display: block; height: 100%; width: 100%; object-fit: cover; object-position: center; filter: saturate(.75) brightness(1.08); transition: transform .6s, filter .6s; }.product-row:hover img { transform: scale(1.08); filter: saturate(1) brightness(1.12); }
 .catalogue-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); }
 .catalogue-card { background: var(--surface); padding: 2rem; }
 .catalogue-index { color: var(--primary); font-family: var(--font-display); font-size: .75rem; font-weight: 600; }
@@ -130,7 +135,7 @@ button, a, input, textarea { letter-spacing: 0; }
 
 @media (max-width: 767px) {
   .section-shell { width: min(100% - 1.5rem, 1320px); }
-  .brand-mark { width: 11rem; }.brand-mark-compact { width: 7.5rem; }
+  .brand-mark { width: 11rem; }.brand-mark-compact { width: auto; max-width: 6.75rem; max-height: 3.25rem; }
   .hero-section { min-height: 820px; }.hero-image { object-position: 66% center; }.hero-overlay { background: linear-gradient(90deg, color-mix(in oklab, var(--background) 98%, transparent), color-mix(in oklab, var(--background) 78%, transparent) 62%, color-mix(in oklab, var(--background) 40%, transparent)); }
   .hero-caption { grid-template-columns: 1fr; gap: .4rem; }.hero-caption span:nth-child(2), .hero-caption span:last-child { text-align: left; }
   .trust-item { min-height: 6rem; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); padding: 1rem; }.trust-item:nth-child(2n) { border-right: 0; }
@@ -142,4 +147,5 @@ button, a, input, textarea { letter-spacing: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .brand-marquee-track { animation: none; }
 }

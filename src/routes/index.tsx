@@ -21,7 +21,10 @@ import {
 
 import heroImage from "@/assets/buildmart-hero.jpg";
 import aboutImage from "@/assets/buildmart-about.jpg";
-import productsImage from "@/assets/buildmart-products.jpg";
+import doorHardwareImage from "@/assets/catalogue-door-hardware.jpg";
+import smartSecurityImage from "@/assets/catalogue-smart-security.jpg";
+import furnitureHardwareImage from "@/assets/catalogue-furniture-hardware.jpg";
+import specialtyHardwareImage from "@/assets/catalogue-specialty-hardware.jpg";
 import logoAsset from "@/assets/buildmart-logo.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,12 +38,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "BuildMart by Kwality Hardware supplies screws, nuts, bolts, washers and fasteners for wholesale requirements in Gwalior.",
+          "BuildMart supplies door hardware, locks, security products, furniture fittings and architectural hardware for wholesale requirements in Gwalior.",
       },
       { property: "og:title", content: "BuildMart | Hardware Wholesale in Gwalior" },
       {
         property: "og:description",
-        content: "A next-generation wholesale hardware brand built on the experience of Kwality Hardware.",
+        content: "A next-generation wholesale hardware brand for dependable supply in Gwalior.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -105,6 +108,41 @@ const industries = [
   { name: "Infrastructure", icon: Building2, imagePosition: "98%" },
 ] as const;
 
+const categoryImages = [
+  doorHardwareImage,
+  smartSecurityImage,
+  specialtyHardwareImage,
+  doorHardwareImage,
+  specialtyHardwareImage,
+  furnitureHardwareImage,
+  furnitureHardwareImage,
+  furnitureHardwareImage,
+  specialtyHardwareImage,
+  specialtyHardwareImage,
+  specialtyHardwareImage,
+  doorHardwareImage,
+  smartSecurityImage,
+  smartSecurityImage,
+  specialtyHardwareImage,
+  specialtyHardwareImage,
+] as const;
+
+const featuredBrands = ["Creatick", "Dorset", "Yale", "Jainson", "CENT"] as const;
+
+const commitments = [
+  { icon: ShieldCheck, label: "Quality assured" },
+  { icon: Truck, label: "Consistent supply" },
+  { icon: PackageCheck, label: "Competitive value" },
+  { icon: Building2, label: "B2B focused" },
+] as const;
+
+const values = [
+  { icon: ShieldCheck, title: "Quality", copy: "Reliable hardware for demanding applications." },
+  { icon: Truck, title: "Reliability", copy: "Built around dependable wholesale supply." },
+  { icon: Layers3, title: "Range", copy: "Essential fastening products under one roof." },
+  { icon: Sparkles, title: "Value", copy: "Competitive wholesale solutions for businesses." },
+] as const;
+
 function BrandName({ compact = false }: { compact?: boolean }) {
   return (
     <span className="brand-name" aria-label="BuildMart">
@@ -134,8 +172,8 @@ function BuildMartHome() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className={`site-header ${scrolled ? "site-header-solid" : ""}`}>
-        <div className="section-shell flex h-20 items-center justify-between gap-6">
-          <a href="#home" className="shrink-0" aria-label="BuildMart home"><BrandName compact /></a>
+        <div className="section-shell grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 lg:h-24 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-8">
+          <a href="#home" className="min-w-0 shrink-0 overflow-hidden" aria-label="BuildMart home"><BrandName compact /></a>
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} className="nav-link">{label}</a>
@@ -176,11 +214,11 @@ function BuildMartHome() {
         <div className="technical-grid" aria-hidden="true" />
         <div className="section-shell relative z-10 flex min-h-[900px] items-center py-36 lg:min-h-screen">
           <div className="max-w-4xl">
-            <p className="eyebrow mb-8"><span /> A brand by Kwality Hardware</p>
+            <p className="eyebrow mb-8"><span /> Hardware wholesale • Gwalior</p>
             <div className="mb-8"><BrandName /></div>
             <h1 className="display-title max-w-4xl">Built on experience.<br /><span>Ready for what&apos;s next.</span></h1>
             <p className="mt-8 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
-              BuildMart brings the experience of Kwality Hardware into a modern wholesale hardware brand — supplying essential fastening solutions with a focus on quality, reliability and value.
+              BuildMart is a modern wholesale hardware brand supplying dependable door hardware, locks, security products, furniture fittings and architectural hardware.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-14 rounded-none px-8 uppercase tracking-widest">
@@ -195,15 +233,21 @@ function BuildMartHome() {
             </div>
           </div>
         </div>
-        <div className="hero-caption"><span>Build Mart</span><span>By Kwality Hardware</span><span>Lohiya Bazar • Gwalior</span></div>
+        <div className="hero-caption"><span>Build Mart</span><span>Hardware Wholesale</span><span>Lohiya Bazar • Gwalior</span></div>
       </section>
 
       <section className="trust-strip" aria-label="BuildMart commitments">
         <div className="section-shell grid grid-cols-2 lg:grid-cols-4">
-          {[
-            [ShieldCheck, "Quality assured"], [Truck, "Consistent supply"], [PackageCheck, "Competitive value"], [Building2, "B2B focused"],
-          ].map(([Icon, text]) => (
-            <div key={text as string} className="trust-item"><Icon /><span>{text as string}</span></div>
+          {commitments.map(({ icon: Icon, label }) => (
+            <div key={label} className="trust-item"><Icon /><span>{label}</span></div>
+          ))}
+        </div>
+      </section>
+
+      <section className="brand-marquee" aria-label="Brands and ranges">
+        <div className="brand-marquee-track">
+          {[...featuredBrands, ...featuredBrands].map((brand, index) => (
+            <span key={`${brand}-${index}`}><i aria-hidden="true" />{brand}</span>
           ))}
         </div>
       </section>
@@ -218,7 +262,7 @@ function BuildMartHome() {
             <p className="eyebrow"><span /> Our foundation</p>
             <h2 className="section-title mt-6">The experience<br />behind BuildMart.</h2>
             <div className="mt-8 space-y-5 text-base leading-8 text-muted-foreground">
-              <p>BuildMart is the next chapter of Kwality Hardware — combining established experience in the hardware trade with a modern approach to wholesale supply.</p>
+              <p>BuildMart combines established experience in the hardware trade with a focused, modern approach to wholesale supply.</p>
               <p>From screws and nuts to bolts, washers and fasteners, our focus is simple: dependable products, reliable supply and strong business relationships.</p>
             </div>
             <blockquote className="brand-quote">“Every connection matters.”</blockquote>
@@ -231,7 +275,7 @@ function BuildMartHome() {
           <p className="eyebrow"><span /> The experience behind BuildMart</p>
           <div className="mt-12 grid gap-px bg-border md:grid-cols-3">
             {[
-              ["01", "Established experience", "Built on the foundation of Kwality Hardware."],
+              ["01", "Established experience", "Built on practical knowledge of the hardware trade."],
               ["02", "Local expertise", "A deep understanding of the hardware market in Gwalior."],
               ["03", "Next-generation supply", "A modern approach to wholesale hardware distribution."],
             ].map(([n, title, copy]) => (
@@ -251,22 +295,22 @@ function BuildMartHome() {
             {products.map(([number, title, copy], index) => (
               <article key={title} className="product-row group">
                 <span className="product-number">{number}</span>
-                <div className="product-crop"><img src={productsImage} alt="" loading="lazy" width={1920} height={912} style={{ objectPosition: `${index * 24}% 70%` }} /></div>
+                <div className="product-crop"><img src={categoryImages[index]} alt={`${title} product range`} loading="lazy" width={1600} height={900} /></div>
                 <h3>{title}</h3><p>{copy}</p><ArrowDownRight />
               </article>
             ))}
           </div>
           <div className="catalogue-grid mt-16" aria-label="Full BuildMart catalogue">
-            {catalogueDetails.map(({ title, items, brands, note }, index) => (
-              <article key={title} className="catalogue-card">
+            {catalogueDetails.map((detail, index) => (
+              <article key={detail.title} className="catalogue-card">
                 <div className="flex items-start justify-between gap-4">
                   <span className="catalogue-index">{String(index + 1).padStart(2, "0")}</span>
                   <ArrowDownRight className="text-primary" aria-hidden="true" />
                 </div>
-                <h3>{title}</h3>
-                <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-                {brands && <p className="catalogue-note"><strong>Brands & ranges</strong>{brands}</p>}
-                {note && <p className="catalogue-note"><strong>Range note</strong>{note}</p>}
+                <h3>{detail.title}</h3>
+                <ul>{detail.items.map((item) => <li key={item}>{item}</li>)}</ul>
+                {"brands" in detail && <p className="catalogue-note"><strong>Brands & ranges</strong>{detail.brands}</p>}
+                {"note" in detail && <p className="catalogue-note"><strong>Range note</strong>{detail.note}</p>}
               </article>
             ))}
           </div>
@@ -274,7 +318,7 @@ function BuildMartHome() {
       </section>
 
       <section className="showcase-section">
-        <img src={productsImage} alt="Hex bolts, nuts, washers, screws and threaded fasteners in studio lighting" loading="lazy" width={1920} height={912} />
+        <img src={doorHardwareImage} alt="Door handles, hinges and mortise hardware in studio lighting" loading="lazy" width={1600} height={900} />
         <div className="showcase-shade" />
         <div className="section-shell relative z-10 py-24 sm:py-32">
           <p className="eyebrow"><span /> Engineered essentials</p>
@@ -306,13 +350,8 @@ function BuildMartHome() {
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
             <div><p className="eyebrow"><span /> Why BuildMart?</p><h2 className="section-title mt-6">More than hardware.<br /><span>A stronger supply chain.</span></h2></div>
             <div className="grid gap-px bg-border sm:grid-cols-2">
-              {[
-                [ShieldCheck,"Quality","Reliable hardware for demanding applications."],
-                [Truck,"Reliability","Built around dependable wholesale supply."],
-                [Layers3,"Range","Essential fastening products under one roof."],
-                [Sparkles,"Value","Competitive wholesale solutions for businesses."],
-              ].map(([Icon,title,copy]) => (
-                <article key={title as string} className="value-cell"><Icon /><h3>{title as string}</h3><p>{copy as string}</p></article>
+              {values.map(({ icon: Icon, title, copy }) => (
+                <article key={title} className="value-cell"><Icon /><h3>{title}</h3><p>{copy}</p></article>
               ))}
             </div>
           </div>
@@ -343,7 +382,7 @@ function BuildMartHome() {
             <p className="eyebrow"><span /> B2B enquiries</p><h2 className="section-title mt-6">Let&apos;s build<br />together.</h2>
             <div className="contact-identity mt-12">
               <BrandName />
-              <p>A brand by Kwality Hardware</p><address>Lohiya Bazar<br />Gwalior, Madhya Pradesh</address>
+              <p>Hardware Wholesale</p><address>Lohiya Bazar<br />Gwalior, Madhya Pradesh</address>
               <p className="mt-7 text-steel">Hardware Wholesale</p><p>Door Hardware · Locks & Security · Furniture & Kitchen Hardware · Architectural Hardware</p>
               <div className="mt-8 border-t border-border pt-6 text-sm text-muted-foreground"><p>Call for wholesale enquiries</p><a className="mt-1 block font-medium text-foreground transition-colors hover:text-primary" href="tel:+917610329046">+91 76103 29046</a></div>
             </div>
@@ -369,12 +408,12 @@ function BuildMartHome() {
       <footer className="site-footer">
         <div className="section-shell py-16">
           <div className="grid gap-12 border-b border-border pb-14 md:grid-cols-2 lg:grid-cols-4">
-            <div><BrandName /><p className="mt-5 max-w-xs text-sm leading-7 text-muted-foreground">A brand by Kwality Hardware.<br />Same essentials. A stronger tomorrow.</p><a className="mt-4 block text-sm text-steel transition-colors hover:text-primary" href="tel:+917610329046">+91 76103 29046</a></div>
+            <div><BrandName /><p className="mt-5 max-w-xs text-sm leading-7 text-muted-foreground">Hardware wholesale.<br />Same essentials. A stronger tomorrow.</p><a className="mt-4 block text-sm text-steel transition-colors hover:text-primary" href="tel:+917610329046">+91 76103 29046</a></div>
             <FooterLinks title="Company" links={[["About","#about"],["Industries","#industries"],["Why BuildMart","#why-buildmart"],["Contact","#contact"]]} />
             <FooterLinks title="Products" links={products.map(([,name]) => [name,"#products"])} />
             <div><h3 className="footer-heading">Location</h3><address className="mt-5 text-sm not-italic leading-7 text-muted-foreground">Lohiya Bazar<br />Gwalior, Madhya Pradesh<br />India</address><Button asChild variant="link" className="mt-4 h-auto p-0 uppercase tracking-widest"><a href="#contact">Request a quote <ArrowRight /></a></Button></div>
           </div>
-          <div className="flex flex-col gap-3 pt-7 text-xs uppercase tracking-widest text-muted-foreground sm:flex-row sm:justify-between"><span>© 2026 BuildMart / Kwality Hardware</span><span>Hardware Wholesale • Gwalior</span></div>
+          <div className="flex flex-col gap-3 pt-7 text-xs uppercase tracking-widest text-muted-foreground sm:flex-row sm:justify-between"><span>© 2026 BuildMart</span><span>Hardware Wholesale • Gwalior</span></div>
         </div>
       </footer>
       <Button asChild className="fixed bottom-4 right-4 z-40 h-12 rounded-none px-5 uppercase tracking-widest shadow-2xl md:hidden"><a href="#contact">Get a quote <ArrowRight /></a></Button>
